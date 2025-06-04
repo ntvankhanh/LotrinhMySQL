@@ -1,11 +1,8 @@
 CREATE DATABASE Ngay2SQL  
     DEFAULT CHARACTER SET = 'utf8mb4';
 
-
-
 USE Ngay2SQL;
 
--- Create Users table
 CREATE TABLE IF NOT EXISTS Users (
     user_id INT PRIMARY KEY,
     full_name VARCHAR(100),
@@ -15,7 +12,6 @@ CREATE TABLE IF NOT EXISTS Users (
     FOREIGN KEY (referrer_id) REFERENCES Users(user_id)
 );
 
--- Create Products table
 CREATE TABLE IF NOT EXISTS Products (
     product_id INT PRIMARY KEY,
     product_name VARCHAR(100),
@@ -24,7 +20,6 @@ CREATE TABLE IF NOT EXISTS Products (
     is_active BOOLEAN
 );
 
--- Create Orders table
 CREATE TABLE IF NOT EXISTS Orders (
     order_id INT PRIMARY KEY,
     user_id INT,
@@ -33,7 +28,6 @@ CREATE TABLE IF NOT EXISTS Orders (
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
--- Create OrderItems table
 CREATE TABLE IF NOT EXISTS OrderItems (
     order_id INT,
     product_id INT,
@@ -43,7 +37,6 @@ CREATE TABLE IF NOT EXISTS OrderItems (
     FOREIGN KEY (product_id) REFERENCES Products(product_id)
 );
 
--- Insert sample data into Users
 INSERT INTO Users (user_id, full_name, city, referrer_id, created_at) VALUES
 (1, 'Nguyen Van A', 'Hanoi', NULL, '2023-01-01'),
 (2, 'Tran Thi B', 'HCM', 1, '2023-01-10'),
@@ -51,7 +44,6 @@ INSERT INTO Users (user_id, full_name, city, referrer_id, created_at) VALUES
 (4, 'Do Thi D', 'Da Nang', 2, '2023-02-05'),
 (5, 'Hoang E', 'Can Tho', NULL, '2023-02-10');
 
--- Insert sample data into Products
 INSERT INTO Products (product_id, product_name, category, price, is_active) VALUES
 (1, 'iPhone 13', 'Electronics', 20000000, 1),
 (2, 'MacBook Air', 'Electronics', 28000000, 1),
@@ -59,7 +51,7 @@ INSERT INTO Products (product_id, product_name, category, price, is_active) VALU
 (4, 'Book: SQL Basics', 'Books', 150000, 1),
 (5, 'Xbox Controller', 'Gaming', 1200000, 0);
 
--- Insert sample data into Orders
+
 INSERT INTO Orders (order_id, user_id, order_date, status) VALUES
 (1001, 1, '2023-02-01', 'completed'),
 (1002, 2, '2023-02-10', 'cancelled'),
@@ -67,7 +59,7 @@ INSERT INTO Orders (order_id, user_id, order_date, status) VALUES
 (1004, 4, '2023-02-15', 'completed'),
 (1005, 1, '2023-03-01', 'pending');
 
--- Insert sample data into OrderItems
+
 INSERT INTO OrderItems (order_id, product_id, quantity) VALUES
 (1001, 1, 1),
 (1001, 3, 3),
